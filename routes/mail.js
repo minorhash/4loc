@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var nodemailer = require("nodemailer");
-var smtpTransport = require('nodemailer-smtp-transport');
 // SMTPサーバーの設定
 var transporter = nodemailer.createTransport({
     host: "smtp.muumuu-mail.com",

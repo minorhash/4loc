@@ -47,7 +47,7 @@ for(let i=0;i<mailtmp.length;i++){
 skua.push(mailtmp[i].sku)
 }
 } else {    console.log("no mailtmp");  }
-  next()};
+next()};
 
 const putMer = function(req, res, next) {
 mer = [];
@@ -95,27 +95,6 @@ console.log(cla);
 
 next()};
 
-// === chk ===============================
-const chk = function(req, res, next) {
-  console.log("=== cart ===================");
-  console.log(email);
-  console.log("=== mailtmp ===");
-  console.log(mailtmp);
-  console.log(cla);
-    next()};
-
-// === rend
-const gcb = function(req, res) {
-let obj={
-seltmp: mailtmp,mailadr:mailadr,
-mer: mer,    sum: sum,tsum:tsum,
-usr: usr,    email: email
-}
-res.render("shop/cart",obj );
-};
-let arr=[  getEma,  getUsr, getAdr, getTmp, getSku, putMer,  putSum,  redSum,getHea,
-chk,  gcb]
-router.get("/shop/cart",arr );
 // ====== post ===============================
 
 // === add item ===
@@ -169,21 +148,44 @@ const clrEma = function(req, res, next) {
 // === aid ===============================
 
 const putAid = function(req, res, next) {
-  router.put("/shop/aid/aid");
-  next()};
+router.put("/shop/aid/aid");
+next()};
 
+// === chk ===============================
+const chk = function(req, res, next) {
+  console.log("=== cart ===================");
+  console.log(email);
+  console.log("=== mailtmp ===");
+  console.log(mailtmp);
+  console.log(cla);
+    next()};
+
+// === get
+const gcb = function(req, res) {
+let obj={
+seltmp: mailtmp,mailadr:mailadr,
+mer: mer,sum: sum,tsum:tsum,
+usr: usr,email: email
+}
+res.render("shop/cart",obj );
+};
+let arr=[
+getEma,getUsr, getAdr, getTmp,getIte, getSku, putMer,  putSum,  redSum,insUpd,  clrEma,chk,  gcb]
+router.get("/shop/cart",arr );
+
+// === post
 const pcb = function(req, res, next) {
 obj={
-seltmp: mailtmp,    sum: sum,    mer: mer,    usr: usr,cnf:cnf,
+seltmp: mailtmp,sum: sum,
+mer: mer,    usr: usr,cnf:cnf,
 email: email
 }
-  res.render("shop/cart",obj ); //rend
+res.render("shop/cart",obj ); //rend
 };
 
 arr=[
-  getEma,  getUsr,  getTmp,  getIte,  getSku, chkSh, insUpd,  clrEma,
-  chk,  pcb
-]
+getEma,  getUsr,  getTmp,  getIte,  getSku, putMer,  putSum,  redSum, insUpd,  clrEma,
+chk,  pcb]
 router.post("/shop/cart",arr );
 
 module.exports = router;
