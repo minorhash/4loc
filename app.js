@@ -54,7 +54,7 @@ app.use('/', mail);
 var shop = require('./routes/shop/index');
 app.use('/', shop);
 
-var top=["index","cart","item","his","my","dl","up","tmp"]
+var top=["index","cart","item","his","my","dl","up","tmp","gui"]
 
 top.forEach(function(ite){
 ite=require('./routes/shop/'+ite)
