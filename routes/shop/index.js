@@ -48,18 +48,19 @@ router.get("/shop", [getEma, getUsr, chk, gcb]);
 // == post ==================================
 
 const getCok = function(req, res, next) {
-  if (req.body) {
-    email = req.body.email;
-    pss = req.body.pss;
-    if (email) {
-      mailusr = adb.mailUsr(email);
-    } else {      console.log("no email");    }
+if (req.body) {
+email = req.body.email;
+pss = req.body.pss;
+} else {console.log("no req.body");}
+
+if (email) {
+mailusr = adb.mailUsr(email);
+} else {      console.log("no email");    }
 
 if (mailusr.email === req.body.email && mailusr.pss === req.body.pss) {
 req.session.email = req.body.email;
 req.session.pss = req.body.pss;
 } else {console.log("wrong");}
-} else {console.log("no req.body");}
 
 next();
 }; // getCok
