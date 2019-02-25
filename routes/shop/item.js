@@ -54,10 +54,11 @@ const chk = function(req, res, next) {
 };
 // === rend
 const rcb = function(req, res) {
-rob = { title: 'item', usr: usr, mer: skumer};
+rob = { title: 'item', usr: usr, mer: skumer,par:par};
 res.render('shop/item', rob);
 }; //rcb
 
 router.post('/shop/item:id', [getPar,getEma, getUsr, getSku, chk, rcb]);
+router.get('/shop/item:id', [getPar,getEma, getUsr, getSku, chk, rcb]);
 
 module.exports = router;
