@@ -5,10 +5,15 @@ const crypto = require('crypto');
 const db = require('cardb');
 const adb = require('usrdb');
 
-let email="", usr="", sku=""
+let email="", usr="", sku="",par=""
 ,skumer=[], mailusr=[], mailtmp=[], skuson=[]
 ,obj="", len="";
 const cred = require('./js/cred');
+
+const getPar= function(req, res, next) {
+par=req.params.id
+mailusr=  adb.mailUsr(email)
+next()}
 
 const getEma = function(req, res, next) {
 email = cred.ema(req);
@@ -23,7 +28,6 @@ next()};
 
 const getSku = function(req, res, next) {
 sku = req.body.sku;
-console.log(sku)
 if (sku) {
 try {skumer = db.skuMer(sku);
 } catch (err) {      console.log(err);    }
@@ -45,6 +49,7 @@ next()}; //getSku
 const chk = function(req, res, next) {
   console.log(sku);
   console.log(skumer);
+  console.log("item"+par);
   next();
 };
 // === rend
@@ -53,6 +58,6 @@ rob = { title: 'item', usr: usr, mer: skumer};
 res.render('shop/item', rob);
 }; //rcb
 
-router.post('/shop/item:id', [getEma, getUsr, getSku, chk, rcb]);
+router.post('/shop/item:id', [getPar,getEma, getUsr, getSku, chk, rcb]);
 
 module.exports = router;
