@@ -1,10 +1,11 @@
 const express = require("express");
+const acc=require("accepts")
 const router = express.Router();
 // == sess =============================
 const db = require("cardb");
 const adb = require("usrdb");
 let allmer = db.allMer();
-let email="", pss="", usr="";
+let email="", pss="", usr="",hea=""
 let mailusr="";
 
 // === login ============================
@@ -15,24 +16,26 @@ const cred = require("./js/cred");
 const getEma = (req, res, next)=> {
   email = cred.ema(req);
   mailusr = adb.mailUsr(email);
-  next();
-};
+next()};
 
 const getUsr = function(req, res, next) {
-  if (mailusr) {
-    usr = mailusr.name;
-  } else {
-    usr = null;
-    console.log("no usr");
-  }
-  next();
-};
+if (mailusr) {
+usr = mailusr.name;
+} else {
+usr = null;
+console.log("no usr");
+}next()};
+
+const getHea = function(req, res, next) {
+hea=req.header("accept-language")
+next()};
 
 const chk = function(req, res, next) {
   console.log("=== get shop ===");
   console.log(email);
   console.log(usr);
   console.log(mailusr);
+  console.log(hea);
   next();
 }; // chkEma
 
@@ -43,7 +46,7 @@ const gcb = function(req, res) {
     usr: usr
   });
 };
-router.get("/shop", [getEma, getUsr, chk, gcb]);
+router.get("/shop", [getEma, getUsr, getHea,chk, gcb]);
 
 // == post ==================================
 
