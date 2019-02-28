@@ -4,7 +4,7 @@ var path = require('path');
 //var favicon = require('serve-favicon');
 var logger = require('morgan');
 //var cookie = require('cookie');
-//var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var i18n = require('i18n-express');
 var sess = require('cookie-session');
@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 app.use(logger('dev'));
-//app.use(cookieParser());
+app.use(cookieParser());
 
 app.use(
   sess({

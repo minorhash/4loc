@@ -9,7 +9,6 @@ var cnf= require('../son/aid.json');
 //var pub=cnf.pub;
 var pub=cnf.pkl;
 
-var cred = require('../js/cred');
 // === put ===
 
 var email, usr, sku, sum,tsum,adr
@@ -19,6 +18,7 @@ var mailtmp, mailusr, mailadr,mailson;
 var mer = [],  suma = [],  skua = [],ite=[]
 
 var getEma = function(req, res, next) {
+var cred = require('../js/cred');
 email = cred.ema(req);
 mailusr=  adb.mailUsr(email)
 next()}
@@ -148,7 +148,6 @@ next()};
 
 var chk = function(req, res, next) {
 console.log('=== PAIDY ====================================');
-//console.log(son)
 console.log(pub)
 console.log(email)
 console.log(tsum)
@@ -162,7 +161,7 @@ console.log(taid.order.items)
 next()};
 
 var gcb = function(req, res) {
-    res.render("shop/paidy/pay", {
+res.render("shop/paidy/pay", {
 title: "paidy", email:email,usr: usr,
 seltmp:mailtmp,mer:mer,
 mailadr:mailadr,ite:taid.order.items,
@@ -171,9 +170,9 @@ pub:pub,ship:taid.order.shipping
 
 })
 }
-var fun= [  getEma,  getUsr,  getAdr,getTmp,putMer,chkSh,putSum,redSum,getTai,putTai,
+var fun= [getEma,  getUsr,
+    getAdr,getTmp,putMer,chkSh,putSum,redSum,getTai,putTai,
 chk,gcb]
 router.get("/shop/paidy/pay",fun); //put
-
 
 module.exports = router;

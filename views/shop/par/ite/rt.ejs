@@ -1,7 +1,7 @@
 <%= shop.pri %>:&nbsp;
-<!-- %=mer.pri.toLocaleString() % -->
-<%= shop.yen %>&nbsp;(+<%= shop.tax %>)<br>
-<div style="line-height:10px"><%= shop.addship %></div>
+<%= mer.pri.toLocaleString() %>
+<%= shop.yen %>&nbsp;<br>
+<div style="line-height:10px">+<%= shop.ship %></div>
 
 <br>
 <form action="/shop/cart" method="post">

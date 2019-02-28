@@ -12,7 +12,6 @@ const cred = require('./js/cred');
 
 const getPar= function(req, res, next) {
 par=req.params.id
-mailusr=  adb.mailUsr(email)
 next()}
 
 const getEma = function(req, res, next) {
@@ -25,11 +24,10 @@ if(mailusr){usr=mailusr.name}
 else{usr=null;console.log("no usr")}
 next()};
 
-
 const getSku = function(req, res, next) {
-sku = req.body.sku;
-if (sku) {
-try {skumer = db.skuMer(sku);
+    //sku = req.body.sku;
+if (par) {
+try {skumer = db.skuMer(par);
 } catch (err) {      console.log(err);    }
 } else {    console.log('no sku');  }
 next()}; //getSku
@@ -59,6 +57,6 @@ res.render('shop/item', rob);
 }; //rcb
 
 router.post('/shop/item:id', [getPar,getEma, getUsr, getSku, chk, rcb]);
-router.get('/shop/item:id', [getPar,getEma, getUsr, getSku, chk, rcb]);
+ router.get('/shop/item:id', [getPar,getEma, getUsr, getSku, chk, rcb]);
 
 module.exports = router;

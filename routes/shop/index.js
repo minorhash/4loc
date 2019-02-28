@@ -5,17 +5,16 @@ const router = express.Router();
 const db = require("cardb");
 const adb = require("usrdb");
 let allmer = db.allMer();
-let email="", pss="", usr="",hea=""
+let email="", pss="", usr="",hea="",coo=""
 let mailusr="";
 
 // === login ============================
 const cred = require("./js/cred");
-
 // === get ============================
 
 const getEma = (req, res, next)=> {
-  email = cred.ema(req);
-  mailusr = adb.mailUsr(email);
+email = cred.ema(req);
+mailusr = adb.mailUsr(email);
 next()};
 
 const getUsr = function(req, res, next) {
@@ -28,6 +27,7 @@ console.log("no usr");
 
 const getHea = function(req, res, next) {
 hea=req.header("accept-language")
+coo=req.cookies
 next()};
 
 const chk = function(req, res, next) {
@@ -35,16 +35,15 @@ const chk = function(req, res, next) {
   console.log(email);
   console.log(usr);
   console.log(mailusr);
-  console.log(hea);
-  next();
-}; // chkEma
+  console.log(coo);
+  next();}; // chkEma
 
 const gcb = function(req, res) {
   res.render("shop", {
     title: "shop",
     mer: allmer,
     usr: usr
-  });
+});
 };
 router.get("/shop", [getEma, getUsr, getHea,chk, gcb]);
 
@@ -65,16 +64,14 @@ req.session.email = req.body.email;
 req.session.pss = req.body.pss;
 } else {console.log("wrong");}
 
-next();
-}; // getCok
+next();}; // getCok
 
 const posUsr = function(req, res, next) {
 if (mailusr.email === req.body.email && mailusr.pss === req.body.pss) {
 usr = mailusr.name;
 } else {        console.log("wrong cred");      }
 
-  next();
-}; // getUsr
+next();}; // getUsr
 
 const rcb = function(req, res) {
 const obj = { usr: usr, mer: allmer };
