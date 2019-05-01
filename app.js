@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-//var favicon = require('serve-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 //var cookie = require('cookie');
 var cookieParser = require('cookie-parser');
@@ -18,9 +18,9 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 app.use(cookieParser());
+app.use(logger('dev'));
 
 app.use(
   sess({
@@ -41,13 +41,11 @@ app.use(  i18n({    translationsPath: path.join(__dirname, 'i18n/'+nat[i]),
 }
 
 // route =================================
-var index= require('./routes/index');
-var page= require('./routes/page');
-var mail= require('./routes/mail');
-
-app.use('/', index);
-app.use('/', page);
-app.use('/', mail);
+var arr=["index","page","mail"]
+arr.forEach(function(ite){
+ite=require('./routes/'+ite)
+app.use('/', ite)
+})
 
 // shop =================================
 
@@ -84,10 +82,10 @@ ite=require('./routes/shop/pal/'+ite)
 app.use('/', ite)
 })
 // === mer ===
-var mer = require('./routes/mer/index');
-app.use('/', mer);
+// var mer = require('./routes/mer/index');
+// app.use('/', mer);
 
-var amer=["out","item","ins","ins_fin","song","song2","song3","del","del_fin",
+var amer=["index","out","item","ins","ins_fin","song","song2","song3","del","del_fin",
 "up","up2","up3"]
 amer.forEach(function(ite){
 ite=require('./routes/mer/'+ite)
