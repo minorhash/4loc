@@ -1,17 +1,32 @@
-<% if(typeof mer!==undefined) { %>
+<% if(mer) { %>
 <div class="row">
 
 <div class=" col-md-4">
-<span align="left"><img src="../img/cd/<%=mer.sku%>.png" width=350></span>
+<% if(mer) { %>
+<span align="left"><img src="../img/cd/png/<%=mer.sku%>.png" width=350></span>
+<% } else{ %>
+
+<span align="left"><img src="../img/cd/png/301.png" width=350></span>
+<% } %>
 </div>
 
 <div valign="bottom" align="left" class=" col-md-5" id="ali"> 
+<% if(mer) { %>
 <% include ./mid %>
 
+<% } else{ %>
+no mer
+<% } %>
 </div><!-- col5-->
 
 <div class=" col-md-3" id="bei">
+
+<% if(mer) { %>
 <% include ./rt %>
+<% } else{ %>
+no mer
+<% } %>
+
 </div><!-- col3-->
 </div><!-- row-->
 <% } else {  %> no mer <% } %>

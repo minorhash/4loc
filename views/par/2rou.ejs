@@ -10,15 +10,30 @@
   <!-- The slideshow -->
 
 <div class="carousel-inner">
-
 <div class="carousel-item active">
 <div class="row">
+    <% for (var i=0;i< 4;i++) { %>
+    <div class="col"> <a href="/shop/item<%= arr[i] %>"><img src="img/cd/png/<%= arr[i] %>.png" alt="" >
+    </a> </div>
+    <% } %>
+</div><!-- row-->
+</div><!-- item-->
 
-<div class="col"> <a href="/shop/item341"><img src="img/cd/341.png" alt="" width="200"></a>    </div>
-<div class="col"><img src="img/cd/340.png" alt="" width="200">    </div>
-<div class="col"><img src="img/cd/343.png" alt="" width="200">    </div>
-<div class="col"><img src="img/cd/344.png" alt="" width="200">    </div>
+<div class="carousel-item ">
+<div class="row">
+<% for (var i=4;i< 8;i++) { %>
+<div class="col"> <a href="/shop/item<%= arr[i] %>"><img src="img/cd/png/<%= arr[i] %>.png" alt=""> 
+</a> </div>
+<% } %>
+</div><!-- row-->
+</div><!-- item-->
 
+<div class="carousel-item ">
+<div class="row">
+<% for (var i=8;i< 12;i++) { %>
+<div class="col"> <a href="/shop/item<%= arr[i] %>"><img src="img/cd/png/<%= arr[i] %>.png" alt="" >
+</a> </div>
+<% } %>
 </div><!-- row-->
 </div><!-- item-->
 
