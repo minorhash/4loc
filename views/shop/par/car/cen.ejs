@@ -1,8 +1,6 @@
 <div class="container-fluid">
 <div class="row">
 <br>
-<%if(seltmp) { %>
-<%if(seltmp && mer.length!==0){%>
 <div class="col-md-8">
 <% include ./img %>
 <br>
@@ -16,13 +14,17 @@
 </div>
 
 <div class="col-md-4">
+    <% if(sum) { %>
 <% include ./sum %>
+<% } else { %>
+no sum
+
+<% } %>
+
 </div>
 
 <% include ./pay %>
 
-<%}else{%><%= shop.emp %><%}%>
-<%}else{%>no seltmp<%}%>
 </div>
 
 </div>
