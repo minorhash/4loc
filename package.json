@@ -34,7 +34,7 @@
     "morgan": "^1.9.1",
     "mypal": "^1.2.2",
     "node-rest-client": "^3.1.0",
-    "nodemailer": "^4.6.7",
+    "nodemailer": "^6.4.16",
     "paypal-rest-sdk": "^1.8.1",
     "popper.js": "^1.14.7",
     "remove": "^0.1.5",
